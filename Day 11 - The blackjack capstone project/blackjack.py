@@ -67,24 +67,25 @@ def print_current_status(user_cards, computer_cards):
     print("    Computer's first card: {}".format(str(computer_cards[0])))
 
 
-def print_final_status(user_cards, user_score, computer_cards, computer_score):
+def print_final_status(user_cards, computer_cards):
     print("    Your final hand: {}, final score: {}".format(user_cards, str(calculate_score(user_cards))))
     print("    Computer's final hand: {}, final score: {}".format(computer_cards, str(calculate_score(computer_cards))))
+
+def compare(user_score, computer_score):
     if user_score == computer_score:
-        print("Draw 🙃") # If the computer and user both have the same score, then it's a draw. 
-    elif calculate_score(computer_cards) == 0: # If the computer has a blackjack (0), then the user loses.
-        print("Computer win with a Blackjack. You lose 😭")
+        return "Draw 🙃" # If the computer and user both have the same score, then it's a draw. 
+    elif computer_score == 0: # If the computer has a blackjack (0), then the user loses.
+        return "Computer win with a Blackjack. You lose 😭"
     elif user_score == 0:
-        print("Win with a Blackjack! 😎") # If the user has a blackjack (0), then the user wins. 
+        return "You win with a Blackjack! 😎" # If the user has a blackjack (0), then the user wins. 
     elif user_score > 21:
-        print("You went over. You lose 😭") # If the user_score is over 21, then the user loses.
+        return "You went over. You lose 😭" # If the user_score is over 21, then the user loses.
     elif computer_score > 21:
-        print("Opponent went over. You win 😁")    
-    else: # If none of the above, then the player with the highest score wins.
-        if user_score > computer_score:
-            print("You win! 😁")
-        else:
-            print("You lose 😤")
+        return "Opponent went over. You win 😁"
+    elif user_score > computer_score: # If none of the above, then the player with the highest score wins.
+        return "You win! 😁"
+    else:
+        return "You lose 😤"
 
 
 want_to_play = ask_want_to_play()
@@ -120,7 +121,8 @@ while want_to_play:
             break # Once the computer finishes, break the loop, it is the end of game 
 
     # The game is finished, print the final status
-    print_final_status(user_cards, calculate_score(user_cards), computer_cards, calculate_score(computer_cards))
+    print_final_status(user_cards, computer_cards)
+    print(compare(calculate_score(user_cards), calculate_score(computer_cards)))
 
     # Ask the user if they want to restart the game.    
     want_to_play = ask_want_to_play()
