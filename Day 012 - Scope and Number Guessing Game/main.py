@@ -26,7 +26,7 @@ print(logo)
 print("I'm thinking of a number between 1 and 100.")
 random_number = random.randint(1, 100)
 
-print("# DEBUG # Number: " + str(random_number))
+#print("# DEBUG # Number: " + str(random_number))
 
 number_attempts = 0
 difficulty = input("Choose a difficulty. Type 'easy' or 'hard': ")
