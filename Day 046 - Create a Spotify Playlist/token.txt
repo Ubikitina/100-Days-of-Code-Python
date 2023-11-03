@@ -1,0 +1,1 @@
+{"access_token": "This file has to be auto-generated. The information has been removed for safety reasons.", "token_type": "Bearer", "expires_in": 3600, "scope": "playlist-modify-private", "expires_at": 1698934456, "refresh_token": "This file has to be auto-generated. The information has been removed for safety reasons."}
