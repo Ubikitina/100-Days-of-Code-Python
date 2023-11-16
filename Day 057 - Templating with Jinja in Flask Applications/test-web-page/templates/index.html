@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Website</title>
+</head>
+<body>
+    <h1>Hello World!</h1>
+    <h2>{{5 * 6}}</h2> <!-- We can do operations by using the curly brackets. The code inside is Python code. -->
+    <h3>Random number: {{ num }}</h3> <!-- We can also display variables that are passed as an argument from server.py file -->
+    <a href="{{url_for('get_blog', num=3)}}">Go to Blog</a>
+</body>
+<footer>
+    <p>Copyright {{year}}. Built by Maialen.</p>
+</footer>
+</html>

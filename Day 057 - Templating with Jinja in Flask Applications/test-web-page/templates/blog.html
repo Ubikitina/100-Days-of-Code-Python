@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+</head>
+<body>
+    <!-- Start a loop through each blog post in the 'posts' list -->
+    {% for blog_post in posts: %}
+        <h1>{{ blog_post["title"] }}</h1> <!-- Display the title of the current blog post -->
+        <h2>{{ blog_post["subtitle"] }}</h2> <!-- Display the subtitle of the current blog post -->
+        <p>{{ blog_post["body"] }}</p> <!-- Display the body/content of the current blog post -->
+
+        <!-- Check if the ID of the current blog post is 2 -->
+        {% if blog_post["id"] == 2  %}
+            <p>Hey this is Blog Post # 2.</p> <!-- Display a special message if the current blog post is #2 -->
+        {% endif %} <!-- End the if statement -->
+
+    {% endfor %} <!-- End the loop -->
+</body>
+</html>
