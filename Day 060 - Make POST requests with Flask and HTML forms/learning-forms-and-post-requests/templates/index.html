@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>It works!</h1>
+
+    <!-- The HTML form starts here -->
+    <!-- The action is {{ url_for('receive_data') }}, which is the method in main.py that redirects to the /login url. We use the dynamic url generation to avoid having any issue with the path -->
+    <form action="{{ url_for('receive_data') }}" method="post">
+        <!-- Label and input field for the name -->
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="username" required>
+
+        <!-- Label and input field for the password -->
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <!-- Submit button to submit the form -->
+        <button type="submit">OK</button>
+    </form>
+</body>
+</html>
