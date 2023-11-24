@@ -1,0 +1,44 @@
+<!-- Old HTML code
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Success</title>
+</head>
+<body>
+	<div class="container">
+		<h1>Top Secret </h1>
+		<iframe src="https://giphy.com/embed/Ju7l5y9osyymQ" width="480" height="360" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+		<p><a href="https://giphy.com/gifs/rick-astley-Ju7l5y9osyymQ">via GIPHY</a></p>
+	</div>
+</body>
+</html>
+-->
+
+
+
+<!-- New HTML code -->
+
+<!-- Extending the base template named "base.html" -->
+{% extends "base.html" %}
+
+<!-- Setting the title for this specific page -->
+{% block title %}Success{% endblock %}
+
+<!-- Inject the styling of the template (superclass) here. We will also add h1 styling for this specific page
+This was an example, and has been removed now
+{% block styling %}
+   {{ super() }}
+   h1 {
+      color:green;
+   }
+{% endblock %}
+-->
+
+<!-- Defining the content block for this page -->
+{% block content %}
+	<div class="container">
+		<h1>Top Secret </h1>
+		<iframe src="https://giphy.com/embed/Ju7l5y9osyymQ" width="480" height="360" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+		<p><a href="https://giphy.com/gifs/rick-astley-Ju7l5y9osyymQ">via GIPHY</a></p>
+	</div>
+{% endblock %}

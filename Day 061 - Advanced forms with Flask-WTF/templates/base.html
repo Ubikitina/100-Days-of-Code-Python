@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Include Bootstrap CSS -->
+    {% block styles %}
+        <!-- Bootstrap CSS -->
+        {{ bootstrap.load_css() }}
+    {% endblock %}
+
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- Template styling example, has been removed
+    <style>
+    {% block styling %}
+    body{
+        background: purple;
+    }
+    {% endblock %}
+    </style>
+    -->
+
+</head>
+<body>
+    {% block content %}{% endblock %}
+</body>
+</html>
