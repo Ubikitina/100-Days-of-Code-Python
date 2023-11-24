@@ -1,6 +1,6 @@
 # 100 Days of Code - Python Course
 
-Welcome to my 100 Days of Code - Python Course GitHub repository! This repository will showcase my code and progress as I take on the "100 Days of Code" challenge based on the Udemy course "[100 Days of Code - The Complete Python Pro Bootcamp for 2021](https://www.udemy.com/course/100-days-of-code/)".
+Welcome to my 100 Days of Code - Python Course GitHub repository! This repository will showcase my code and progress as I take on the "100 Days of Code" challenge based on the Udemy course "[100 Days of Code - The Complete Python Pro Bootcamp for 2023](https://www.udemy.com/course/100-days-of-code/)".
 
 I have decided to take on the "100 Days of Code" challenge to build a strong coding habit, enhance my Python skills, and work on exciting coding projects.
 
@@ -39,7 +39,7 @@ git clone https://github.com/Ubikitina/100-Days-of-Code-Python.git
 
 ## Resources
 
-1. [100 Days of Code - The Complete Python Pro Bootcamp for 2021 (Udemy)](https://www.udemy.com/course/100-days-of-code/): The original Udemy course that I am following for this challenge.
+1. [100 Days of Code - The Complete Python Pro Bootcamp for 2023 (Udemy)](https://www.udemy.com/course/100-days-of-code/): The original Udemy course that I am following for this challenge.
 
 2. [Python Documentation](https://docs.python.org/): Official Python documentation for reference.
 
