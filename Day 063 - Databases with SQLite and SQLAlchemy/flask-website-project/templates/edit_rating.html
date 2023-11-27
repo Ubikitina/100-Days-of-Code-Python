@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Rating</title>
+</head>
+<body>
+    <!-- Create a form -->
+    <form action="{{ url_for('edit') }}" method="POST">
+        <!-- Display the book name and the current rating -->
+        <p>Book Name: {{book.title}}</p>
+        <p>Current Rating {{book.rating}}</p>
+
+        <!-- The below line creates a hidden input field within a form and assigns the ID. It is used to send the book's ID along with other form data when the form is submitted. -->
+         <input hidden="hidden" name="id" value="{{book.id}}">
+
+        <!-- Create an input to enter the new rating -->
+        <input name="rating" type="text" placeholder="New Rating">
+        <!-- Create a button to submit the new rating. The action that will be performed is the "edit" one as specified above -->
+        <button type="submit">Change Rating</button>
+    </form>
+</body>
+</html>
