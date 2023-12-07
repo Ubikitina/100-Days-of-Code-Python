@@ -1,0 +1,47 @@
+{% include "header.html" %}
+
+<!-- Page Header-->
+<header class="masthead" style="background-image: url('{{post.img_url}}')">
+  <div class="container position-relative px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        <div class="post-heading">
+          <h1>{{ post.title }}</h1>
+          <h2 class="subheading">{{ post.subtitle }}</h2>
+          <span class="meta"
+            >Posted by
+            <a href="#">{{ post.author }}</a>
+            on {{ post.date }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Post Content -->
+<article>
+  <div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        <!-- In order to reflect the HTML structure, we added a Jinja safe() filter. This makes sure that when Jinja
+        renders the post.html template, it doesn't treat the HTML as text.  To apply a Jinja filter, we used the pipe
+        symbol and this goes between the Jinja expression and Jinja filter. e.g. Jinja expression | Jinja filter. -->
+        <!-- Note for simplicity we are not sanitising the HTML here and assuming that we can trust our blog authors to
+         not post a malicious <script>. -->
+        {{ post.body|safe }}
+
+        <div class="d-flex justify-content-end mb-4">
+          <!-- Editing posts-->
+          <a
+            class="btn btn-primary float-right"
+            href="{{url_for('edit_post', post_id=post.id)}}"
+            >Edit Post</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+{% include "footer.html" %}
