@@ -15,13 +15,13 @@ I will replicate what has been done step by step:
     1. The presenter uses the git add command to add the file "chapter1.txt" to the staging area. This means that the changes made to this file are now ready to be committed.
   3. **Local Repository** : The local repository is where Git permanently stores the committed changes. It maintains a record of all the changes made to files over time, creating a history of the Project. In this case, the .git directory is created, representing the local repository
 5. Commands:
-  1. " **git add**": changes to files were tracked by adding them to the staging area with it.
-  2. " **git commit -m**": changes were committed with it and a descriptive message. It is very important to establish a clear commit description or message.
-  3. " **git status**" is used to check the status of the working directory, staging area, and local repository in a Git project. It provides information about the changes made to files and their current state in relation to version control.
-  4. " **git diff**" to view differences.
-  5. " **git checkout**" to revert changes.
-  6. " **git log**": is used to display a log of commits in a Git repository. It provides a chronological history of commits, showing details such as the commit hash, author, date, and commit message.
-  7. " **git rm --cached -r .**": remove everything from the Git staging area.
+    - " **git add**": changes to files were tracked by adding them to the staging area with it.
+    - " **git commit -m**": changes were committed with it and a descriptive message. It is very important to establish a clear commit description or message.
+    - " **git status**" is used to check the status of the working directory, staging area, and local repository in a Git project. It provides information about the changes made to files and their current state in relation to version control.
+    - " **git diff**" to view differences.
+    - " **git checkout**" to revert changes.
+    - " **git log**": is used to display a log of commits in a Git repository. It provides a chronological history of commits, showing details such as the commit hash, author, date, and commit message.
+    - " **git rm --cached -r .**": remove everything from the Git staging area.
 
 The instructor created and modified text files, showcasing the commit process for each change. All the commands demonstrate how version control helps manage file versions.
 
@@ -32,9 +32,9 @@ In this lesson, the presenter discusses the process of creating a remote reposit
 1. **GitHub Account Setup** : The process involves visiting GitHub.com, filling out a quick form, and confirming the email.
 2. **Creating a Repository on GitHub** : by clicking on the "+" in the top right corner, selecting "New Repository," and providing a name and description. Public repositories are the default, but the option to make it private is available.
 3. **Using Command Line Instructions** : we will use command line instructions to set up the repository (push it) in our laptop. The process involves copying the repository's URL from GitHub and executing commands in the terminal:
-  1. git remote add origin https://github.com/Angelas-Test-Account/Story.git
-  2. git branch -M main
-  3. git push -u origin main
+    - git remote add origin https://github.com/Angelas-Test-Account/Story.git
+    - git branch -M main
+    - git push -u origin main
 4. **Creating a Remote** : refers to informing the local Git repository about the existence of a remote repository, particularly on a platform like GitHub. This involves using the command **git remote add origin** to establish a connection between the local repository and the remote repository. The remote is conventionally named " **origin**" for ease of understanding.
 5. **Pushing to the Remote Repository** : The command **git push -u origin**** main **is executed to push the local repository to the remote repository. The "** main **" branch is specified, and the "** -u**" flag links up the local and remote repositories.
 
