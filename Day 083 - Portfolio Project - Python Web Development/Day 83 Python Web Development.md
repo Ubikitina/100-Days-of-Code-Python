@@ -70,9 +70,6 @@ Write down how you approached the project. What was hard, what was easy. How mig
 
 
 ### Potential improvements for the future
-
-# Potential Areas for Improvement in Today's Project
-
 In reflecting on today's project, I've identified some areas for potential improvement:
 
 - **Limited Portfolio Projects:**
