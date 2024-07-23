@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Coffee and Wifi{% endblock %}
+
+{% block content %}
+<div class="jumbotron text-center bg-light py-5">
+    <div class="container">
+        <h1 class="display-4 mb-4">☕️ Coffee & Wifi 💻</h1>
+        <p class="lead mb-4">Looking for the perfect cafe to work from? Find spots with reliable power sockets, fast wifi, and great coffee.</p>
+        <hr class="my-4">
+        <p class="mb-4">Discover my curated collection of cafes with all the details you need.</p>
+        <a class="btn btn-warning btn-lg mb-3" href="{{ url_for('get_all_cafes') }}" role="button">Explore Cafes</a>
+        <p class="mb-4">Not sure where to go? Let us pick a random cafe for you!</p>
+        <a class="btn btn-secondary btn-lg mb-3" href="{{ url_for('get_random_cafe') }}" role="button">Surprise Me!</a>
+        <p class="mb-4">Know a great spot? Add it to our list!</p>
+        <a class="btn btn-success btn-lg" href="{{ url_for('post_new_cafe') }}" role="button">Add a New Cafe</a>
+    </div>
+</div>
+
+
+{% endblock %}

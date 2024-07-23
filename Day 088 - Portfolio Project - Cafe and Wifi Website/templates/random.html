@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block title %}Restaurants{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <!-- Page Title -->
+    <h1 class="text-center mb-4">One Random Cafe</h1>
+
+    <!-- Card Container -->
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <!-- Cafe Card -->
+            <div class="card shadow-lg border-0">
+                <img src="{{ cafe['img_url'] }}" alt="coffee shop image" class="card-img-top" style="object-fit: cover; height: 225px;">
+
+                <div class="card-body">
+                    <h5 class="card-title text-center mb-3">{{ cafe['name'] }}</h5>
+                    <p class="card-text text-center mb-4">{{ cafe['location'] }}</p>
+
+                    <!-- Accordion for Details -->
+                    <div class="accordion" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <div id="flush-collapse{{ cafe['id'] }}" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <table class="table table-sm table-borderless">
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">Coffee Price:</th>
+                                                <td>{{ cafe['coffee_price'] }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Available Seats:</th>
+                                                <td>{{ cafe['seats'] }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Has Wifi:</th>
+                                                <td>{% if cafe['has_wifi'] %} ✅ {% else %} ❌ {% endif %}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Has Sockets:</th>
+                                                <td>{% if cafe['has_sockets'] %} ✅ {% else %} ❌ {% endif %}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Has Toilet:</th>
+                                                <td>{% if cafe['has_toilet'] %} ✅ {% else %} ❌ {% endif %}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Takes Calls:</th>
+                                                <td>{% if cafe['can_take_calls'] %} ✅ {% else %} ❌ {% endif %}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Return Link -->
+            <div class="text-center mt-4">
+                <a href="/" class="btn btn-primary">Return to Index Page</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
