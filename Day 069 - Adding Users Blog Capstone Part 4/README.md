@@ -1,6 +1,8 @@
 # Day 69 - Adding Users to Our Blog Project
 This project aims to add user authentication to a blog, allowing users to sign up, log in, and comment on blog posts. Once completed, this project will be a fully functional blog website ready for publication and launch.
 
+
+
 ## Features
 
 1. User Registration
@@ -8,9 +10,29 @@ This project aims to add user authentication to a blog, allowing users to sign u
 3. User Authentication and Authorization
 4. Admin-only access to certain routes
 
-## Starting Files
+## Demo
 
-The project includes a starting SQLite database file called `blog.db` with some sample blog posts.
+### User Registration
+
+![](./img/User%20Registration.gif)
+
+
+### User Login and Logout
+
+![](./img/Login%20and%20Logout.gif)
+
+
+
+### Admin Privileges
+The first registered user has admin privileges. Additional buttons (Create New Post, Edit Post, Delete) are visible only to the admin.
+
+![](./img/Admin%20Priviledges.gif)
+
+
+### Adding Comments to Blog Posts
+![](./img/Comment.gif)
+
+
 
 ## Requirements
 
