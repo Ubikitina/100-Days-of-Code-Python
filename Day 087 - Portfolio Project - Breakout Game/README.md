@@ -16,6 +16,9 @@ To develop this game, the code developed on the 22nd and 23rd of this course has
 
 - The game ends when all lives are exhausted or all bricks are destroyed.
 
+## Demo
+
+![](Demo.gif)
 
 ## Implementation
 ### Classes

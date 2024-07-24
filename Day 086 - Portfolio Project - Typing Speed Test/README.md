@@ -3,14 +3,6 @@
 ## Goal
 Using Tkinter and the knowledge of building GUI applications with Python, this desktop app assesses your typing speed. It provides the user with sample text and detects how many words they can type per minute.
 
-## Implementation
-The application is implemented using Python and the Tkinter library for building the graphical user interface. Colors and font constants are defined to maintain a consistent visual style throughout the application. The main Tkinter event loop starts the application, and the user interface is built with labels, buttons, and an entry widget. The start screen displays the instructions for the game.
-
-The functions developed are:
-- start_game(): Clears the start screen elements, initiates the countdown for the typing test and displays the game screen elements.
-- count_down(time_counter): Updates the timer display on the canvas with the current time (it is updated every second). Once the time is expires, it removes the current elements and shows the end game screen.
-- check_typing(event): Compares the typed word with the expected word and increments the score if they match. Updates the word and clears the text to prepare the game for the next word typing.
-
 
 ## How to Use
 1. Run the application. You will be welcomed by the start screen.
@@ -22,6 +14,18 @@ The functions developed are:
 4. You will have one minute to type the words that appear on the screen.
 
 5. When the time is up, the app will display the number of words you've typed correctly.
+
+## Demo
+![](Demo.gif)
+
+## Implementation
+The application is implemented using Python and the Tkinter library for building the graphical user interface. Colors and font constants are defined to maintain a consistent visual style throughout the application. The main Tkinter event loop starts the application, and the user interface is built with labels, buttons, and an entry widget. The start screen displays the instructions for the game.
+
+The functions developed are:
+- start_game(): Clears the start screen elements, initiates the countdown for the typing test and displays the game screen elements.
+- count_down(time_counter): Updates the timer display on the canvas with the current time (it is updated every second). Once the time is expires, it removes the current elements and shows the end game screen.
+- check_typing(event): Compares the typed word with the expected word and increments the score if they match. Updates the word and clears the text to prepare the game for the next word typing.
+
 
 
 ## Reflection Time
