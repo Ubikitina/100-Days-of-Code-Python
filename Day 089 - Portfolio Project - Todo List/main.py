@@ -55,6 +55,7 @@ class Task(db.Model):
     title = db.Column(db.String(250), unique=True, nullable=False)
     date = db.Column(db.String(250), nullable=False)
     body = db.Column(db.Text, nullable=False)
+    status = db.Column(db.String(250), nullable=False)
 
     # One to Many relationship between each Task object (Parent) and Comment object (Child). Where each Task can have many associated Comment objects.
     comments = relationship("Comment", back_populates="parent_post")
@@ -200,8 +201,8 @@ def get_all_posts():
 @app.route('/dashboard')
 def dashboard():
     result = db.session.execute(db.select(Task))
-    posts = result.scalars().all()
-    return render_template("dashboard.html", all_posts=posts, current_user=current_user)
+    tasks = result.scalars().all()
+    return render_template("dashboard.html", all_tasks=tasks, current_user=current_user)
 
 
 # Allow logged-in users to comment on posts
@@ -241,7 +242,8 @@ def add_new_post():
             title=form.title.data,
             body=form.body.data,
             author=current_user,
-            date=date.today().strftime("%B %d, %Y")
+            date=date.today().strftime("%B %d, %Y"),
+            status=form.status.data,
         )
         db.session.add(new_post)
         db.session.commit()
@@ -256,19 +258,21 @@ def edit_post(post_id):
     edit_form = CreatePostForm(
         title=post.title,
         author=post.author,
+        status=post.status,
         body=post.body
     )
     if edit_form.validate_on_submit():
         post.title = edit_form.title.data
         post.author = current_user
         post.body = edit_form.body.data
+        post.status = edit_form.status.data
         db.session.commit()
         return redirect(url_for("show_task", post_id=post.id))
     return render_template("make-post.html", form=edit_form, is_edit=True, current_user=current_user)
 
 
 @app.route("/delete/<int:post_id>")
-@admin_only  # Use a decorator so only an admin user can create a new post
+@admin_only  # Use a decorator so only an admin user can delete a task
 def delete_post(post_id):
     post_to_delete = db.get_or_404(Task, post_id)
     db.session.delete(post_to_delete)

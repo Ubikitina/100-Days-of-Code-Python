@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, PasswordField, TextAreaField
+from wtforms import StringField, SubmitField, PasswordField, TextAreaField, SelectField
 from wtforms.validators import DataRequired, URL
 
 
@@ -7,6 +7,8 @@ from wtforms.validators import DataRequired, URL
 class CreatePostForm(FlaskForm):
     title = StringField("Task Title", validators=[DataRequired()])
     body = TextAreaField("Task Description", validators=[DataRequired()])
+    status = SelectField("Status", choices=[('To do', 'To do'), ('In progress', 'In progress'), ('Done', 'Done')],
+                         validators=[DataRequired()])
     submit = SubmitField("Submit Task")
 
 

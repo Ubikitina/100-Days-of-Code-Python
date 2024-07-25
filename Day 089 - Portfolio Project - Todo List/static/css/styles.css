@@ -4200,7 +4200,7 @@ textarea.form-control-lg {
 
 .accordion {
   --bs-accordion-color: #212529;
-  --bs-accordion-bg: #fff;
+  --bs-accordion-bg: #FAF8FF;
   --bs-accordion-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, border-radius 0.15s ease;
   --bs-accordion-border-color: var(--bs-border-color);
   --bs-accordion-border-width: 1px;
@@ -4233,9 +4233,10 @@ textarea.form-control-lg {
   color: var(--bs-accordion-btn-color);
   text-align: left;
   background-color: var(--bs-accordion-btn-bg);
-  border: 0;
+  border: 1px solid #dee2e6;
   overflow-anchor: none;
   transition: var(--bs-accordion-transition);
+  font-weight: bold;
 }
 @media (prefers-reduced-motion: reduce) {
   .accordion-button {
