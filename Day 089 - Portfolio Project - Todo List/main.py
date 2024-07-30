@@ -49,8 +49,8 @@ class Task(db.Model):
     # Bidirectional One-to-Many relationship between the two tables Users (Parent) and Tasks (Child).
     # Create Foreign Key, "users.id" the users refers to the tablename of User.
     author_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-    # Create reference to the User object, the "posts" refers to the posts property in the User class.
-    author = relationship("User", back_populates="posts")
+    # Create reference to the User object, the "tasks" refers to the tasks property in the User class.
+    author = relationship("User", back_populates="tasks")
 
     title = db.Column(db.String(250), unique=True, nullable=False)
     date = db.Column(db.String(250), nullable=False)
@@ -58,7 +58,7 @@ class Task(db.Model):
     status = db.Column(db.String(250), nullable=False)
 
     # One to Many relationship between each Task object (Parent) and Comment object (Child). Where each Task can have many associated Comment objects.
-    comments = relationship("Comment", back_populates="parent_post")
+    comments = relationship("Comment", back_populates="parent_task")
 
 
 # Create a User table for all your registered users
@@ -71,7 +71,7 @@ class User(UserMixin, db.Model):
 
     # Bidirectional One-to-Many relationship between the two tables Users (Parent) and Task (Child).
     # This will act like a List of Task objects attached to each User.
-    posts = relationship("Task", back_populates="author")  # The "author" refers to the author property in the Task class.
+    tasks = relationship("Task", back_populates="author")  # The "author" refers to the author property in the Task class.
 
     # Parent relationship with the Comment table: One to Many relationship Between the User Table (Parent) and the Comment table (Child). One User can be linked to Many Comment objects.
     comments = relationship("Comment", back_populates="comment_author")  # "comment_author" refers to the comment_author property in the Comment class.
@@ -87,8 +87,8 @@ class Comment(db.Model):
     comment_author = relationship("User", back_populates="comments")  # "comments" refers to the comments property in the User class.
 
     # One to Many relationship between each Task object (Parent) and Comment object (Child). Where each Task can have many associated Comment objects.
-    post_id = db.Column(db.Integer, db.ForeignKey("tasks.id"))
-    parent_post = relationship("Task", back_populates="comments")
+    task_id = db.Column(db.Integer, db.ForeignKey("tasks.id"))
+    parent_task = relationship("Task", back_populates="comments")
 
     text = db.Column(db.Text, nullable=False)
     date = db.Column(db.String(250), nullable=False)
@@ -217,6 +217,12 @@ def dashboard():
     tasks = result.scalars().all()
     return render_template("dashboard.html", all_tasks=tasks, current_user=current_user)
 
+@app.route('/dashboard/<int:user_id>')
+def dashboard_by_user(user_id):
+    result = db.session.execute(db.select(Task).filter(Task.author_id == user_id))
+    tasks = result.scalars().all()
+    return render_template("dashboard.html", all_tasks=tasks, current_user=current_user)
+
 
 # Allow logged-in users to comment on tasks
 @app.route("/task/<int:task_id>", methods=["GET", "POST"])
@@ -235,7 +241,7 @@ def show_task(task_id):
         new_comment = Comment(
             text=comment_form.comment_text.data,
             comment_author=current_user,
-            parent_post=requested_task,
+            parent_task=requested_task,
             date = date.today().strftime("%B %d, %Y")
         )
         # Add the new comment to the database

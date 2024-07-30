@@ -142,8 +142,12 @@
       <!-- New Task -->
       <!-- Only show Create Task button if user id is 1 (admin user) -->
       {% if current_user.is_authenticated %}
+      <br>
       <div class="d-flex justify-content-end mb-4">
         <a class="btn btn-primary float-right" href="{{url_for('add_new_task')}}">Create New Task</a>
+      </div>
+      <div class="d-flex justify-content-end mb-4">
+        <a class="btn btn-primary float-right" href="{{url_for('dashboard_by_user', user_id=current_user.id) }}">See only my tasks</a>
       </div>
       {% endif %}
 
