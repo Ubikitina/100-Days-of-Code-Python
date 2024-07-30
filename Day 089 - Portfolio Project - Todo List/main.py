@@ -8,7 +8,7 @@ from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy.orm import relationship
 # Import your forms from the forms.py
-from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
+from forms import CreateTaskForm, RegisterForm, LoginForm, CommentForm
 
 
 
@@ -49,7 +49,7 @@ class Task(db.Model):
     # Bidirectional One-to-Many relationship between the two tables Users (Parent) and Tasks (Child).
     # Create Foreign Key, "users.id" the users refers to the tablename of User.
     author_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-    #Create reference to the User object, the "posts" refers to the posts protperty in the User class.
+    # Create reference to the User object, the "posts" refers to the posts property in the User class.
     author = relationship("User", back_populates="posts")
 
     title = db.Column(db.String(250), unique=True, nullable=False)
@@ -165,8 +165,7 @@ def register():
         #This line will authenticate the user with Flask-Login
         login_user(new_user)
 
-        # Redirect to the 'get_all_posts' route
-        return redirect(url_for("get_all_posts"))
+        return redirect(url_for("home_page"))
 
     # If the form is not submitted, then redirect to 'register.html' template, passing the form instance to the template for display.
     return render_template("register.html", form=form, current_user=current_user)
@@ -188,7 +187,7 @@ def login():
         if user:
             if check_password_hash(user.password, password):
                 login_user(user)
-                return redirect(url_for('get_all_posts'))
+                return redirect(url_for('home_page'))
             else:  # Password incorrect
                 flash('Password incorrect, please try again.')
                 return redirect(url_for('login'))
@@ -203,14 +202,13 @@ def login():
 @app.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('get_all_posts'))
+    return redirect(url_for('home_page'))
 
 
 @app.route('/')
-def get_all_posts():
+def home_page():
     result = db.session.execute(db.select(Task))
-    posts = result.scalars().all()
-    return render_template("index.html", all_posts=posts, current_user=current_user)
+    return render_template("index.html", current_user=current_user)
 
 
 @app.route('/dashboard')
@@ -220,13 +218,13 @@ def dashboard():
     return render_template("dashboard.html", all_tasks=tasks, current_user=current_user)
 
 
-# Allow logged-in users to comment on posts
-@app.route("/task/<int:post_id>", methods=["GET", "POST"])
-def show_task(post_id):
-    requested_post = db.get_or_404(Task, post_id)
+# Allow logged-in users to comment on tasks
+@app.route("/task/<int:task_id>", methods=["GET", "POST"])
+def show_task(task_id):
+    requested_task = db.get_or_404(Task, task_id)
     comment_form = CommentForm()  # Add the CommentForm to the route
 
-    # Manage a POST request by only allowing logged-in users to comment on posts
+    # Manage a POST request by only allowing logged-in users to comment on tasks
     if comment_form.validate_on_submit():
         # Check if the user is not authenticated (logged in)
         if not current_user.is_authenticated:
@@ -237,60 +235,60 @@ def show_task(post_id):
         new_comment = Comment(
             text=comment_form.comment_text.data,
             comment_author=current_user,
-            parent_post=requested_post,
+            parent_post=requested_task,
             date = date.today().strftime("%B %d, %Y")
         )
         # Add the new comment to the database
         db.session.add(new_comment)  # First add to the current session
         db.session.commit()  # Then commit it to the database
 
-    return render_template("task.html", post=requested_post, current_user=current_user, form=comment_form)
+    return render_template("task.html", task=requested_task, current_user=current_user, form=comment_form)
 
 
 
-@app.route("/new-post", methods=["GET", "POST"])
-@authenticated_only  # Use a decorator so only an authenticated user can create a new post
-def add_new_post():
-    form = CreatePostForm()
+@app.route("/new-task", methods=["GET", "POST"])
+@authenticated_only  # Use a decorator so only an authenticated user can create a new task
+def add_new_task():
+    form = CreateTaskForm()
     if form.validate_on_submit():
-        new_post = Task(
+        new_task = Task(
             title=form.title.data,
             body=form.body.data,
             author=current_user,
             date=date.today().strftime("%B %d, %Y"),
             status=form.status.data,
         )
-        db.session.add(new_post)
+        db.session.add(new_task)
         db.session.commit()
         return redirect(url_for("dashboard"))
-    return render_template("make-post.html", form=form, current_user=current_user)
+    return render_template("make-task.html", form=form, current_user=current_user)
 
 
-@app.route("/edit-post/<int:post_id>", methods=["GET", "POST"])
-@authenticated_only  # Use a decorator so only an authenticated user can edit a post
-def edit_post(post_id):
-    post = db.get_or_404(Task, post_id)
-    edit_form = CreatePostForm(
-        title=post.title,
-        author=post.author,
-        status=post.status,
-        body=post.body
+@app.route("/edit-task/<int:task_id>", methods=["GET", "POST"])
+@authenticated_only  # Use a decorator so only an authenticated user can edit a task
+def edit_task(task_id):
+    task = db.get_or_404(Task, task_id)
+    edit_form = CreateTaskForm(
+        title=task.title,
+        author=task.author,
+        status=task.status,
+        body=task.body
     )
     if edit_form.validate_on_submit():
-        post.title = edit_form.title.data
-        post.author = current_user
-        post.body = edit_form.body.data
-        post.status = edit_form.status.data
+        task.title = edit_form.title.data
+        task.author = current_user
+        task.body = edit_form.body.data
+        task.status = edit_form.status.data
         db.session.commit()
-        return redirect(url_for("show_task", post_id=post.id))
-    return render_template("make-post.html", form=edit_form, is_edit=True, current_user=current_user)
+        return redirect(url_for("show_task", task_id=task.id))
+    return render_template("make-task.html", form=edit_form, is_edit=True, current_user=current_user)
 
 
-@app.route("/delete/<int:post_id>")
+@app.route("/delete/<int:task_id>")
 @admin_only  # Use a decorator so only an admin user can delete a task
-def delete_post(post_id):
-    post_to_delete = db.get_or_404(Task, post_id)
-    db.session.delete(post_to_delete)
+def delete_task(task_id):
+    task_to_delete = db.get_or_404(Task, task_id)
+    db.session.delete(task_to_delete)
     db.session.commit()
     return redirect(url_for('dashboard'))
 

@@ -4,7 +4,7 @@ from wtforms.validators import DataRequired, URL
 
 
 # WTForm for creating a blog post
-class CreatePostForm(FlaskForm):
+class CreateTaskForm(FlaskForm):
     title = StringField("Task Title", validators=[DataRequired()])
     body = TextAreaField("Task Description", validators=[DataRequired()])
     status = SelectField("Status", choices=[('To do', 'To do'), ('In progress', 'In progress'), ('Done', 'Done')],

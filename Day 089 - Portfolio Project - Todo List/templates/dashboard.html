@@ -36,7 +36,7 @@
             <div class="accordion-item border rounded shadow-sm">
               <h2 class="accordion-header" id="headingPostToDo{{ task.id }}">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePostToDo{{ task.id }}" aria-expanded="false" aria-controls="collapsePostToDo{{ task.id }}">
-                  {{ task.title }} - <small class="text-muted">&nbsp;{{ task.author.name }}</small>
+                  📝 {{ task.title }} - <small class="text-muted">&nbsp;{{ task.author.name }}</small>
                 </button>
               </h2>
               <div id="collapsePostToDo{{ task.id }}" class="accordion-collapse collapse" aria-labelledby="headingPostToDo{{ task.id }}" data-bs-parent="#postAccordionToDo">
@@ -47,10 +47,10 @@
                   </p>
                   <!-- Button Wrapper -->
                   <div class="button-wrapper d-flex justify-content-center mt-3">
-                    <form action="{{ url_for('show_task', post_id=task.id) }}" method="GET" style="display:inline;">
+                    <form action="{{ url_for('show_task', task_id=task.id) }}" method="GET" style="display:inline;">
                       <button type="submit" class="btn btn-primary me-2">Open</button>
                     </form>
-                    <form action="{{ url_for('edit_post', post_id=task.id) }}" method="GET" style="display:inline;">
+                    <form action="{{ url_for('edit_task', task_id=task.id) }}" method="GET" style="display:inline;">
                       <button type="submit" class="btn btn-secondary">Edit</button>
                     </form>
                   </div>
@@ -75,7 +75,7 @@
             <div class="accordion-item border rounded shadow-sm">
               <h2 class="accordion-header" id="headingPostToDo{{ task.id }}">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePostToDo{{ task.id }}" aria-expanded="false" aria-controls="collapsePostToDo{{ task.id }}">
-                  {{ task.title }} - <small class="text-muted">&nbsp;{{ task.author.name }}</small>
+                  🔄 {{ task.title }} - <small class="text-muted">&nbsp;{{ task.author.name }}</small>
                 </button>
               </h2>
               <div id="collapsePostToDo{{ task.id }}" class="accordion-collapse collapse" aria-labelledby="headingPostToDo{{ task.id }}" data-bs-parent="#postAccordionToDo">
@@ -86,10 +86,10 @@
                   </p>
                   <!-- Button Wrapper -->
                   <div class="button-wrapper d-flex justify-content-center mt-3">
-                    <form action="{{ url_for('show_task', post_id=task.id) }}" method="GET" style="display:inline;">
+                    <form action="{{ url_for('show_task', task_id=task.id) }}" method="GET" style="display:inline;">
                       <button type="submit" class="btn btn-primary me-2">Open</button>
                     </form>
-                    <form action="{{ url_for('edit_post', post_id=task.id) }}" method="GET" style="display:inline;">
+                    <form action="{{ url_for('edit_task', task_id=task.id) }}" method="GET" style="display:inline;">
                       <button type="submit" class="btn btn-secondary">Edit</button>
                     </form>
                   </div>
@@ -113,7 +113,7 @@
             <div class="accordion-item border rounded shadow-sm">
               <h2 class="accordion-header" id="headingPostToDo{{ task.id }}">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePostToDo{{ task.id }}" aria-expanded="false" aria-controls="collapsePostToDo{{ task.id }}">
-                  {{ task.title }} - <small class="text-muted">&nbsp;{{ task.author.name }}</small>
+                  <span style="text-decoration: line-through;">✅ {{ task.title }}</span> - <small class="text-muted">&nbsp;{{ task.author.name }}</small>
                 </button>
               </h2>
               <div id="collapsePostToDo{{ task.id }}" class="accordion-collapse collapse" aria-labelledby="headingPostToDo{{ task.id }}" data-bs-parent="#postAccordionToDo">
@@ -124,10 +124,10 @@
                   </p>
                   <!-- Button Wrapper -->
                   <div class="button-wrapper d-flex justify-content-center mt-3">
-                    <form action="{{ url_for('show_task', post_id=task.id) }}" method="GET" style="display:inline;">
+                    <form action="{{ url_for('show_task', task_id=task.id) }}" method="GET" style="display:inline;">
                       <button type="submit" class="btn btn-primary me-2">Open</button>
                     </form>
-                    <form action="{{ url_for('edit_post', post_id=task.id) }}" method="GET" style="display:inline;">
+                    <form action="{{ url_for('edit_task', task_id=task.id) }}" method="GET" style="display:inline;">
                       <button type="submit" class="btn btn-secondary">Edit</button>
                     </form>
                   </div>
@@ -143,7 +143,7 @@
       <!-- Only show Create Task button if user id is 1 (admin user) -->
       {% if current_user.is_authenticated %}
       <div class="d-flex justify-content-end mb-4">
-        <a class="btn btn-primary float-right" href="{{url_for('add_new_post')}}">Create New Task</a>
+        <a class="btn btn-primary float-right" href="{{url_for('add_new_task')}}">Create New Task</a>
       </div>
       {% endif %}
 
