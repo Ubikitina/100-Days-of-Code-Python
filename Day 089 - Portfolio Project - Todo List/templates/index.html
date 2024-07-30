@@ -24,10 +24,13 @@
 
       <!-- Go to dashboard and New Post Buttons-->
       <div class="d-flex justify-content-center mb-4">
+
+        <!-- Only show Dashboard and Create Post button if user is authenticated -->
+        {% if current_user.is_authenticated: %}
         <a class="btn btn-primary text-uppercase me-2" href="{{url_for('dashboard')}}">Go to Task Dashboard</a>
-        <!-- Only show Create Post button if user id is 1 (admin user) -->
-        {% if current_user.id == 1: %}
         <a class="btn btn-primary text-uppercase" href="{{url_for('add_new_post')}}">Create New Task</a>
+        {% else %}
+        <a class="btn btn-primary text-uppercase" href="{{url_for('login')}}">Log In</a>
         {% endif %}
       </div>
     </div>

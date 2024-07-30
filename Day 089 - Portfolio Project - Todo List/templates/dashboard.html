@@ -36,14 +36,14 @@
             <div class="accordion-item border rounded shadow-sm">
               <h2 class="accordion-header" id="headingPostToDo{{ task.id }}">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePostToDo{{ task.id }}" aria-expanded="false" aria-controls="collapsePostToDo{{ task.id }}">
-                  {{ task.title }}
+                  {{ task.title }} - <small class="text-muted">&nbsp;{{ task.author.name }}</small>
                 </button>
               </h2>
               <div id="collapsePostToDo{{ task.id }}" class="accordion-collapse collapse" aria-labelledby="headingPostToDo{{ task.id }}" data-bs-parent="#postAccordionToDo">
                 <div class="accordion-body">
                   <p class="post-meta" style="font-size: 0.875rem; margin-bottom: 0;">
                     {{ task.body }}<br>
-                    <span class="text-muted">Reporter:</span> <a href="#">{{ task.author.name }}</a>
+                    <span class="text-muted">Date: {{ task.date }}</span>
                   </p>
                   <!-- Button Wrapper -->
                   <div class="button-wrapper d-flex justify-content-center mt-3">
@@ -75,14 +75,14 @@
             <div class="accordion-item border rounded shadow-sm">
               <h2 class="accordion-header" id="headingPostToDo{{ task.id }}">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePostToDo{{ task.id }}" aria-expanded="false" aria-controls="collapsePostToDo{{ task.id }}">
-                  {{ task.title }}
+                  {{ task.title }} - <small class="text-muted">&nbsp;{{ task.author.name }}</small>
                 </button>
               </h2>
               <div id="collapsePostToDo{{ task.id }}" class="accordion-collapse collapse" aria-labelledby="headingPostToDo{{ task.id }}" data-bs-parent="#postAccordionToDo">
                 <div class="accordion-body">
                   <p class="post-meta" style="font-size: 0.875rem; margin-bottom: 0;">
                     {{ task.body }}<br>
-                    <span class="text-muted">Reporter:</span> <a href="#">{{ task.author.name }}</a>
+                    <span class="text-muted">Date: {{ task.date }}</span>
                   </p>
                   <!-- Button Wrapper -->
                   <div class="button-wrapper d-flex justify-content-center mt-3">
@@ -113,14 +113,14 @@
             <div class="accordion-item border rounded shadow-sm">
               <h2 class="accordion-header" id="headingPostToDo{{ task.id }}">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePostToDo{{ task.id }}" aria-expanded="false" aria-controls="collapsePostToDo{{ task.id }}">
-                  {{ task.title }}
+                  {{ task.title }} - <small class="text-muted">&nbsp;{{ task.author.name }}</small>
                 </button>
               </h2>
               <div id="collapsePostToDo{{ task.id }}" class="accordion-collapse collapse" aria-labelledby="headingPostToDo{{ task.id }}" data-bs-parent="#postAccordionToDo">
                 <div class="accordion-body">
                   <p class="post-meta" style="font-size: 0.875rem; margin-bottom: 0;">
                     {{ task.body }}<br>
-                    <span class="text-muted">Reporter:</span> <a href="#">{{ task.author.name }}</a>
+                    <span class="text-muted">Date: {{ task.date }}</span>
                   </p>
                   <!-- Button Wrapper -->
                   <div class="button-wrapper d-flex justify-content-center mt-3">
@@ -141,7 +141,7 @@
 
       <!-- New Task -->
       <!-- Only show Create Task button if user id is 1 (admin user) -->
-      {% if current_user.id == 1 %}
+      {% if current_user.is_authenticated %}
       <div class="d-flex justify-content-end mb-4">
         <a class="btn btn-primary float-right" href="{{url_for('add_new_post')}}">Create New Task</a>
       </div>

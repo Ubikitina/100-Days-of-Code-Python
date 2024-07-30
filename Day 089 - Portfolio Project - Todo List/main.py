@@ -112,6 +112,21 @@ def admin_only(f): # Define a decorator function named admin_only that takes a f
     # Return the decorated function (decorated_function) with the admin-checking logic added
     return decorated_function
 
+#Create authenticated-only decorator
+def authenticated_only(f):
+    # Use the wraps decorator from the functools module to preserve the original function's metadata
+    @wraps(f)
+    # Define an inner function. It takes any number of positional and keyword arguments
+    def decorated_function(*args, **kwargs):
+        # Check if current user is authenticated
+        if not current_user.is_authenticated:
+            return abort(403)  # 403 is a Forbidden error if not authenticated
+        #Otherwise, continue with the route function by passing any provided *args and **kwargs
+        return f(*args, **kwargs)
+    # Return the decorated function (decorated_function) with the authentication-checking logic added
+    return decorated_function
+
+
 # Register new users into the User database
 # Use Werkzeug to hash the user's password when creating a new user.
 @app.route('/register', methods=["GET", "POST"])
@@ -234,7 +249,7 @@ def show_task(post_id):
 
 
 @app.route("/new-post", methods=["GET", "POST"])
-@admin_only  # Use a decorator so only an admin user can create a new post
+@authenticated_only  # Use a decorator so only an authenticated user can create a new post
 def add_new_post():
     form = CreatePostForm()
     if form.validate_on_submit():
@@ -247,12 +262,12 @@ def add_new_post():
         )
         db.session.add(new_post)
         db.session.commit()
-        return redirect(url_for("get_all_posts"))
+        return redirect(url_for("dashboard"))
     return render_template("make-post.html", form=form, current_user=current_user)
 
 
 @app.route("/edit-post/<int:post_id>", methods=["GET", "POST"])
-@admin_only  # Use a decorator so only an admin user can create a new post
+@authenticated_only  # Use a decorator so only an authenticated user can edit a post
 def edit_post(post_id):
     post = db.get_or_404(Task, post_id)
     edit_form = CreatePostForm(
@@ -277,7 +292,7 @@ def delete_post(post_id):
     post_to_delete = db.get_or_404(Task, post_id)
     db.session.delete(post_to_delete)
     db.session.commit()
-    return redirect(url_for('get_all_posts'))
+    return redirect(url_for('dashboard'))
 
 
 @app.route("/about")
