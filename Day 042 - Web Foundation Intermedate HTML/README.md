@@ -1,6 +1,6 @@
-# Day 41: Introduction to HTML - Web Foundations
+# Day 42: Introduction to HTML - Web Foundations
 
-Welcome to Day 41 of learning Python! Today, we took a detour from Python to explore the basics of web development, specifically focusing on HTML (HyperText Markup Language). We covered several foundational topics, and the exercises helped solidify the concepts by creating and understanding different HTML elements.
+Welcome to Day 42 of learning Python! Today, we took a detour from Python to explore the basics of web development, specifically focusing on HTML (HyperText Markup Language). We covered several foundational topics, and the exercises helped solidify the concepts by creating and understanding different HTML elements.
 
 In this session, I got hands-on experience with basic HTML elements:
 - **List Elements:** Created ordered and unordered lists to organize content.
