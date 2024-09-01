@@ -1,8 +1,8 @@
-# Day 47: Selenium WebDriver and Game Playing Bot
+# Day 48: Selenium WebDriver and Game Playing Bot
 
 ## Overview
 
-On Day 47, I focused on learning how to use Selenium WebDriver, a powerful tool for automating web browsers. Selenium is often used for testing web applications, web scraping, and automating repetitive tasks on the web. I practiced with various challenges and eventually created a bot to play an online game.
+On Day 48, I focused on learning how to use Selenium WebDriver, a powerful tool for automating web browsers. Selenium is often used for testing web applications, web scraping, and automating repetitive tasks on the web. I practiced with various challenges and eventually created a bot to play an online game.
 
 ### Files Created
 
