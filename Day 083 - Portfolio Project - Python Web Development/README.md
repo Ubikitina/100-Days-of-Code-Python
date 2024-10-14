@@ -38,6 +38,10 @@ The primary objective of this project is to design and develop a professional po
 ## Deliverables
 - Fully functional and visually appealing portfolio website.
 
+Demo:
+
+![](Demo.gif)
+
 
 ## Implementation
 I've crafted this portfolio using a template downloaded from [Start Bootstrap](https://startbootstrap.com/theme/creative). The template is licensed under the MIT License, more details can be found in the [LICENSE file](https://github.com/startbootstrap/startbootstrap-creative/blob/master/LICENSE).
